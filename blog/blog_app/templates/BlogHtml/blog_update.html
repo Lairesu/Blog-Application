@@ -1,0 +1,30 @@
+{% extends "/BlogHtml/blog_base.html" %}
+
+{% block title %}
+    Edit blog
+{% endblock %}
+
+{% block content %}
+    <div class="create-content mt-5 p-4 bg-dark text-light rounded">
+        <form action="{{ url_for('main.update_blog', post_id=blog.id) }}" method="post" enctype="multipart/form-data">
+            <h1 class="text-center mb-4">Update Your Post</h1>
+
+            <div class="form-group mb-3">
+                <label for="postThumbnail">Thumbnail</label>
+                <input name="thumbnail" type="file" class="form-control" id="postThumbnail" accept="image/*">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ blog.title }}" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="content">Content:</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required>{{ blog.content }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Post</button>
+        </form>
+    </div>
+{% endblock %}

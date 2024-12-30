@@ -1,0 +1,16 @@
+{% extends "/BlogHtml/blog_base.html" %}
+
+{% block title %}
+    Confirm Delete
+{% endblock %}
+
+{% block content %}
+    <div class="create-content mt-5 p-4 bg-dark text-light rounded">
+        <h1 class="text-center mb-4">Confirm Delete</h1>
+        <p style="color: black;">Are you sure you want to delete the blog post titled "{{ blog.title }}"?</p>
+        <form action="{{ url_for('main.delete_blog', post_id=blog.id) }}" method="post">
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{{ url_for('main.view_blog') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

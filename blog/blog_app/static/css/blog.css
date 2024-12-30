@@ -1,0 +1,262 @@
+/* General CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Impact", sans-serif;
+  color: whitesmoke;
+  scrollbar-width: 0;
+}
+body {
+  background-color: black;
+}
+
+/* Container layout */
+.container {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+/* Left-section styles */
+.left-section {
+  position: fixed; /* Fixed position for side panel */
+  top: 0;
+  left: 0;
+  width: 300px; /* Adjusted width */
+  height: 100%; /* Full height */
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  padding: 20px; /* Adds spacing inside the panel */
+  border-right: 3px solid #343a40;
+}
+.left-section::after{
+  filter: blur(4px);
+}
+/* Icon and sections alignment */
+.icon h1 {
+  text-align: center;
+  border-bottom: 2px solid #343a40;
+}
+/* l_above (navbar) */
+.l_above {
+  flex: 1;
+  margin-left: 50px;
+}
+
+.navbar ul li {
+  list-style-type: none;
+}
+
+.navbar ul li a {
+  color: whitesmoke;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  display: block; /* Make anchor tags block-level to improve spacing */
+  transition: background-color 0.3s, color 0.3s; /* Transition effect for smooth hover */
+}
+
+.navbar ul li a:hover {
+  background-color: #343a40; /* Dark background on hover */
+  color: #fff; /* Ensure text is white on hover */
+}
+
+/* Button style */
+.create_btn{
+  margin-left: 40px;
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.create_btn{
+  color: whitesmoke;
+  text-decoration: none;  
+}
+.create_btn:hover{
+  background-color: #343a40;
+  color: whitesmoke;
+  text-decoration: none;
+}
+/* Dropdown menu custom styles */
+.dropdown-menu {
+  background-color: #343a40 !important; /* Black background for dropdown */
+  color: white !important; /* White text */
+}
+
+.dropdown-menu .dropdown-item {
+  color: white !important;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #343a40 !important; /* Darker background on hover */
+  color: white !important; /* Text stays white on hover */
+}
+
+/* l_down styles */
+
+.l_below {
+  padding: 30px;
+  border-top: 2px solid #343a40;
+}
+
+
+/* blogs */
+.blog_view {
+  display: flex;
+  flex-wrap: wrap; 
+  margin-left: 300px;
+  width: 1250px; 
+  background-color:black;
+  overflow: hidden;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+.blog_info_container {
+  border: 1px solid #343a40;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  flex: 0 0 48%; /* Flex basis to 48% to make room for margins */
+  margin-right: 2%; 
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.blog_info_container:nth-child(2n) {
+  margin-right: 0; /* Remove right margin for the second item in the row */
+}
+
+/* Thumbnail Styling */
+.thumbnail img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Blog Content Container */
+.blog_content_container {
+  display: flex;
+  padding: 15px;
+  background-color: black;
+}
+
+/* Profile Image Styling */
+.prf_img {
+  margin-right: 15px;
+}
+
+.prf_img img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+/* Blog Info Styling */
+.blog_info {
+  flex: 1;
+}
+
+.blog_header .blog-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.blog_header .blog-title a {
+  text-decoration: none;
+}
+
+.blog_header .blog-title a:hover {
+  color: #007bff;
+}
+
+.blog-meta {
+  font-size: 20px;
+}
+
+.blog-meta a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.blog-meta a:hover {
+  text-decoration: underline;
+}
+
+.blog_content p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.read-more {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.read-more:hover {
+  text-decoration: none;
+}
+
+/* Action Buttons */
+.blog_actions {
+  margin-top: 10px;
+}
+
+.blog_actions .btn {
+  margin-right: 10px;
+}
+
+/* blog Creation */
+.create-content {
+  margin-left: 500px;
+  height: auto;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #e6e6e6, #ffffff);
+  box-shadow: 19px -19px 14px #8a8a8a, -19px 19px 14px #ffffff;
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+.text-center {
+  color: black;
+}
+.create-content:hover {
+  transform: translateY(-5px);
+}
+.create-content,
+label {
+  color: black;
+}
+
+
+/* blog details */
+.blog_details {
+  margin-left: 300px;
+  padding: 20px 30px;
+  background-color: black;
+  color: whitesmoke;
+}
+
+.blog_btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.blog_btns a {
+  text-decoration: none;
+  color: whitesmoke;
+  padding: 10px 20px;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+}
+.back{
+  text-align: center;
+  margin-left: 450px;
+}

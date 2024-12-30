@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Hack Tales
+{% endblock %}
+
+
+{% block content %}
+{% for blog in blogs %}
+<div class="box">
+    <div class="thumbnail">
+        <img src="{{ blog.thumbnail_url }}" alt="Blog Thumbnail" />
+    </div> <!-- end of thumbnail-->
+    
+    <div class="about">
+        <div class="blog-desc">
+            <p>{{ blog.title }}</p>
+            <p>{{ blog.content[:20] }}...</p>
+            <a href="{{ url_for('main.blog_details', post_id=blog.id) }}" class="read-more">Read more</a>
+        </div> <!-- end of blog-desc-->
+
+        <div class="lower-box">
+            <a href="{{ url_for('main.blog_details', post_id=blog.id) }}" class="btn">View</a>
+            {% if blog.user_id == user.id %}
+            <a href="{{ url_for('main.update_blog', post_id=blog.id) }}" class="btn">Edit</a>
+            {% endif %}
+        </div> <!-- end of lower-box -->
+
+        <small class="c_time">{{ blog.created_at.strftime('%d %b %Y') }}</small>
+
+    </div> <!-- end of about-->
+</div> <!-- end of box-->
+{% endfor %}
+{% endblock %}
+

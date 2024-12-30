@@ -1,0 +1,40 @@
+{% extends "/BlogHtml/blog_base.html" %}
+
+{% block title %}
+    Create a blog
+{% endblock %}
+
+{% block left%}
+{% endblock %}
+
+{% block content %}
+<div class="create-content mt-5 p-4">
+    <h2 class="text-center mb-4">Create New Blog</h2>
+    <form action="/create_blog" method="POST" enctype="multipart/form-data">
+
+        <!-- Thumbnail Upload -->
+        <div class="form-group mb-3">
+            <label for="postThumbnail">Thumbnail</label>
+            <input name="thumbnail" type="file" class="form-control" id="postThumbnail" accept="image/*" required>
+        </div>
+
+        <!-- Title -->
+        <div class="form-group mb-3"> <!-- Fixed typo: Added closing tag for 'div class' -->
+            <label for="postTitle">Title</label>
+            <input name="title" type="text" class="form-control" id="postTitle" placeholder="Enter post title" required>
+        </div>
+
+        <!-- Content -->
+        <div class="form-group mb-3"> <!-- Fixed typo: Added closing tag for 'div class' -->
+            <label for="postContent">Content</label>
+            <textarea name="content" class="form-control" id="postContent" rows="5" placeholder="Write your content here..." required></textarea>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary px-4">Post</button>
+            <a href="{{ url_for('main.view_blog') }}" class="btn btn-outline-secondary px-4">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

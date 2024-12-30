@@ -1,0 +1,143 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Impact', sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* Left Section */
+.left-section {
+    flex: 2;
+    background: #000000;
+    color: whitesmoke;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-section h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.sub-heading {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+/* Search Bar */
+.left-section .search-form {
+    margin-top: 40px;
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+}
+
+.searchTerm {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #fff;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    background: #fff;
+    color: #000;
+    font-size: 1rem;
+}
+
+.searchTerm:focus {
+    border-color: #00B4CC;
+    outline: none;
+}
+
+.searchButton {
+    width: 50px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchButton:hover {
+    background: #00B4CC;
+}
+
+/* Form Section */
+.form {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f8f8;
+    padding: 20px;
+}
+
+.container {
+    background: #ffffff;
+    box-shadow: 13px 13px 0px #000000, 
+                -13px -13px 0px #e0e0e0; /* Retained shadow */
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 450px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+.container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+/* Input Fields */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #00B4CC;
+    box-shadow: 0 0 5px rgba(0, 180, 204, 0.5);
+    outline: none;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .left-section {
+        display: none;
+    }
+
+    .form {
+        flex: 1;
+        padding: 10px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 20px;
+    }
+}

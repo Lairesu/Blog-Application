@@ -1,0 +1,94 @@
+{% extends "/BlogHtml/blog_base.html" %}
+{% block title %} {{ blog.title }} {% endblock %}
+
+{% block left %}
+<div class="left-section">
+  <div class="icon">
+    <h1>HACK TALES</h1>
+  </div>
+  <div class="l_above">
+    <div class="navbar">
+      <ul>
+        <li>
+          <a class="nav-link" href="/"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a class="nav-link" href="{{ url_for('main.view_blog') }}"><i class="fa fa-compass"></i> Explore</a>
+        </li>
+        <li>
+          <a class="nav-link" href="{{ url_for('main.profile') }}"><i class="fa fa-user"></i> Profile</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#"><i class="fa fa-envelope"></i> Contact Us</a>
+        </li>
+      </ul>
+      <a class="create_btn" href="{{ url_for('main.create_blog') }}">CREATE</a>
+    </div>
+  </div>
+  <div class="l_below">
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="prf_img">
+          <img src="{{ url_for('static', filename=current_user_profile_image_url) }}" alt="Profile Image">
+        </div>
+        <span>{{ current_user.username }}</span>
+      </a>
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+        <li>
+          <a class="dropdown-item" href="{{ url_for('main.create_blog') }}"><i class="fa fa-plus-circle"></i> New Blog</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#"><i class="fa fa-cogs"></i> Settings</a>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+          <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out"></i> Sign out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="top">
+  <div class="top_banner">
+    <img src="{{ url_for('static', filename=blog_thumbnail_url) }}" alt="Thumbnail Image">
+  </div>
+</div>
+<div class="blog_details">
+  <div class="blog_info_container">
+    <div class="blog_content_container">
+      <div class="prf_img">
+        <img src="{{ url_for('static', filename=author_profile_image_url) }}" alt="Profile Image">
+      </div>
+      <div class="blog_info">
+        <div class="blog_header">
+          <div class="blog-title">
+            <a href="#">{{ blog.title }}</a>
+          </div>
+          <div class="blog-meta">
+            <span class="blog-author">
+              <a href="#">{{ blog.author_profile.first_name }} {{ blog.author_profile.last_name }}</a>
+            </span>
+            <span class="blog-date text-muted">@{{ blog.author_user.username }} · {{ blog.created_at.strftime('%d %b %Y') }}</span>
+          </div>
+        </div>
+        <div class="blog_content">
+          <p>{{ blog.content }}</p>
+        </div>
+        {% if blog.user_id == current_user.id %}
+        <div class="blog_btns">
+          <a class="btn btn-secondary btn-sm" href="{{ url_for('main.update_blog', post_id=blog.id) }}">Update</a>
+          <a class="btn btn-danger btn-sm" href="{{ url_for('main.delete_blog', post_id=blog.id) }}">Delete</a>
+        </div>
+        {% endif %}
+        <a class="back btn btn-primary" href="{{ url_for('main.view_blog') }}">Back to Blogs</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
