@@ -91,4 +91,29 @@
     </div>
   </div>
 </div>
+
+<!-- comments-section -->
+<div class="comment-form-container">
+  <div class="comment-form">
+      <form method="POST" action="{{ url_for('main.comment', post_id=blog.id) }}" class="comment-form">
+          <textarea id="comment-input" name="comment-input" placeholder="Write a comment..." class="form-control"></textarea>
+          <button type="submit" class="btn btn-primary mt-3">Post Comment</button>
+      </form>
+  </div>
+  
+  <!-- Space for Comments -->
+  <div class="comments-section">
+      <h2>Comments</h2>
+      <div id="comments-container">
+          {% for comment in comments %}
+          <div class="comment">
+              <div class="author text-muted">{{ comment.user.profiles.first_name }} {{ comment.user.profiles.last_name }} @{{ comment.user.username }}</div>
+              <p>{{ comment.comment }}</p>
+              <small>{{ comment.created_at.strftime('%B %d, %Y %H:%M') }}
+              </small>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+</div>
 {% endblock %}

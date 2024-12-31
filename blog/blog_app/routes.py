@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request, current_app
-from .models import db, User, Profile, Blog
+from .models import db, User, Profile, Blog, Comment
 from datetime import datetime
 import os
 from werkzeug.utils import secure_filename
@@ -203,13 +203,16 @@ def blog_details(post_id):
     author_profile_image_url = os.path.join('uploads', 'profile_img', os.path.basename(blog.author_profile.profile_img)).replace('\\', '/') if blog.author_profile and blog.author_profile.profile_img else 'uploads/default.jpg'
     current_user_profile_image_url = os.path.join('uploads', 'profile_img', os.path.basename(current_user_profile.profile_img)).replace('\\', '/') if current_user_profile and current_user_profile.profile_img else 'uploads/default.jpg'
 
+    comments = Comment.query.filter_by(blog_id=post_id).order_by(Comment.created_at.desc()).all()
+    
     return render_template("BlogHtml/blog_details.html", 
                            blog=blog, 
                            current_user_profile=current_user_profile, 
                            current_user=current_user,
                            blog_thumbnail_url=blog_thumbnail_url, 
                            author_profile_image_url=author_profile_image_url,
-                           current_user_profile_image_url=current_user_profile_image_url)
+                           current_user_profile_image_url=current_user_profile_image_url,
+                           comments=comments)
 
 @main.route("/update_blog/<int:post_id>", methods=["GET", "POST"])
 @login_required
@@ -367,3 +370,30 @@ def edit_profile():
     return render_template("profile_edit.html", profile=profile, user=user)
 
 
+@main.route("/comment/<int:post_id>", methods=["GET", "POST"])
+def comment(post_id):
+    if request.method == "POST":
+        user_id = session.get("user_id")
+        if not user_id:
+            flash("You must be logged in to comment.")
+            return redirect(url_for("main.login"))
+        
+        comment = request.form.get("comment-input")
+        if not comment:
+            flash("Comment cannot be empty.")
+            return redirect(url_for("main.blog_details", post_id=post_id))
+        
+        new_comment = Comment(
+            user_id=user_id,
+            blog_id=post_id,
+            comment=comment,
+            created_at=datetime.utcnow()
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        flash("Comment added successfully!")
+        return redirect(url_for("main.blog_details", post_id=post_id))
+    
+    return redirect(url_for("main.blog_details", post_id=post_id))
