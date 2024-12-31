@@ -84,7 +84,7 @@ A simple and intuitive blog application built using modern web technologies. Thi
 
 ## Future Enhancements
 
-- N/A as of right now
+- **N/a** as of right now
 
 ---
 
