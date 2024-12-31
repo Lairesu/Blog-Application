@@ -84,8 +84,7 @@ A simple and intuitive blog application built using modern web technologies. Thi
 
 ## Future Enhancements
 
-- Password and email Change mechanics
-- 💬 **Comment Section**: Readers can leave comments on blog posts (optional feature).
+- N/A as of right now
 
 ---
 
